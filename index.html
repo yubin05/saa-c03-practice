@@ -110,7 +110,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
 .mob-perpage span{font-size:12px;color:var(--text-dimmer);}
 .mob-perpage select{background:var(--surface2);border:1px solid var(--border);border-radius:7px;padding:6px 10px;color:var(--text);font-size:13px;font-family:var(--mono);outline:none;cursor:pointer;}
 
-.quiz-main{padding:10px 12px 200px;}
+.quiz-main{padding:10px 12px 20px;}
 .q-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;margin-bottom:14px;overflow:hidden;}
 .q-card.ac{border-color:rgba(16,185,129,0.4);}
 .q-card.aw{border-color:rgba(244,63,94,0.4);}
@@ -144,7 +144,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
 .chk-btn:disabled{background:var(--surface3);color:var(--text-dimmer);cursor:default;}
 .chk-btn.rm{background:var(--surface3);color:var(--text-dim);border:1px solid var(--border2);}
 
-.pagination{display:flex;align-items:center;justify-content:center;gap:5px;padding:16px 0 80px;flex-wrap:wrap;}
+.pagination{display:flex;align-items:center;justify-content:center;gap:5px;padding:12px 0 100px;flex-wrap:wrap;}
 .pg-btn{background:var(--surface);border:1px solid var(--border);color:var(--text-dim);border-radius:8px;min-width:42px;min-height:42px;padding:0 10px;cursor:pointer;font-size:13px;font-family:var(--mono);display:flex;align-items:center;justify-content:center;}
 .pg-btn.active{background:var(--accent);border-color:var(--accent);color:white;}
 .pg-btn[disabled]{opacity:0.3;cursor:default;}
@@ -187,7 +187,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
   .mob-search{display:none;}
   .mob-perpage{display:none;}
   .bnav{display:none!important;}
-  .quiz-main{padding:18px 20px 80px;max-width:780px;}
+  .quiz-main{padding:18px 20px 20px;max-width:780px;}
 }
 
 .toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(10px);background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 16px;font-size:13px;color:var(--text-dim);display:flex;align-items:center;gap:8px;z-index:9999;transition:all 0.25s;box-shadow:0 8px 32px rgba(0,0,0,0.5);white-space:nowrap;opacity:0;pointer-events:none;}
@@ -279,11 +279,11 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
         </div>
         <div class="ds-sec">
           <div class="ds-lbl">페이지당 문제</div>
-          <select class="ds-sel" id="pp-d"><option value="1" selected>1문제</option><option value="10">10문제</option><option value="20">20문제</option><option value="50">50문제</option></select>
+          <select class="ds-sel" id="pp-d"><option value="10" selected>10문제</option><option value="20">20문제</option><option value="50">50문제</option></select>
         </div>
       </aside>
       <div class="quiz-content">
-        <div class="mob-perpage"><span>페이지당</span><select id="pp-m"><option value="1" selected>1문제</option><option value="10">10문제</option><option value="20">20문제</option><option value="50">50문제</option></select></div>
+        <div class="mob-perpage"><span>페이지당</span><select id="pp-m"><option value="10" selected>10문제</option><option value="20">20문제</option><option value="50">50문제</option></select></div>
         <div class="quiz-main" id="qc"></div>
         <div class="pagination" id="pg"></div>
       </div>
@@ -308,7 +308,7 @@ const SB_URL='https://nxmwacfrvfzbjufqiwdg.supabase.co';
 const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im54bXdhY2ZydmZ6Ymp1ZnFpd2RnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkyNjI4NzgsImV4cCI6MjA5NDgzODg3OH0.a70Gx1VQDoGRDyUxA6HDoMFo8mCebAIQeDFbkuaofCM';
 const LS_KEY='saa-c03-session';
 
-let qs={}, uid='', cat=null, page=1, pp=1, flt='all', st='', fl=[];
+let qs={}, uid='', cat=null, page=1, pp=10, flt='all', st='', fl=[];
 let syncTimer=null;
 
 // ── 비밀번호 해시 (간단한 SHA-256) ──
