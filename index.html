@@ -279,11 +279,11 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
         </div>
         <div class="ds-sec">
           <div class="ds-lbl">페이지당 문제</div>
-          <select class="ds-sel" id="pp-d"><option value="10">10문제</option><option value="20" selected>20문제</option><option value="50">50문제</option></select>
+          <select class="ds-sel" id="pp-d"><option value="10" selected>10문제</option><option value="20">20문제</option><option value="50">50문제</option></select>
         </div>
       </aside>
       <div class="quiz-content">
-        <div class="mob-perpage"><span>페이지당</span><select id="pp-m"><option value="10">10문제</option><option value="20" selected>20문제</option><option value="50">50문제</option></select></div>
+        <div class="mob-perpage"><span>페이지당</span><select id="pp-m"><option value="10" selected>10문제</option><option value="20">20문제</option><option value="50">50문제</option></select></div>
         <div class="quiz-main" id="qc"></div>
         <div class="pagination" id="pg"></div>
       </div>
@@ -308,7 +308,7 @@ const SB_URL='https://nxmwacfrvfzbjufqiwdg.supabase.co';
 const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im54bXdhY2ZydmZ6Ymp1ZnFpd2RnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkyNjI4NzgsImV4cCI6MjA5NDgzODg3OH0.a70Gx1VQDoGRDyUxA6HDoMFo8mCebAIQeDFbkuaofCM';
 const LS_KEY='saa-c03-session';
 
-let qs={}, uid='', cat=null, page=1, pp=20, flt='all', st='', fl=[];
+let qs={}, uid='', cat=null, page=1, pp=10, flt='all', st='', fl=[];
 let syncTimer=null;
 
 // ── 비밀번호 해시 (간단한 SHA-256) ──
