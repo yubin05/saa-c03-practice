@@ -149,6 +149,11 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
 .pg-btn.active{background:var(--accent);border-color:var(--accent);color:white;}
 .pg-btn[disabled]{opacity:0.3;cursor:default;}
 .pg-dot{color:var(--text-dimmer);padding:0 4px;}
+.pg-input-wrap{display:flex;align-items:center;gap:6px;margin-left:4px;}
+.pg-input-wrap span{font-size:12px;color:var(--text-dimmer);}
+.pg-input{width:52px;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:0 8px;height:42px;color:var(--text);font-size:13px;font-family:var(--mono);outline:none;text-align:center;}
+.pg-input:focus{border-color:var(--accent);}
+.pg-total{font-size:12px;color:var(--text-dimmer);font-family:var(--mono);}
 
 .bnav{position:fixed;bottom:0;left:0;right:0;background:var(--surface);border-top:1px solid var(--border);display:none;gap:4px;padding:6px 8px;padding-bottom:max(6px,env(safe-area-inset-bottom));z-index:250;}
 .bnav.on{display:flex;}
@@ -647,7 +652,23 @@ function renderPg(){
   el.innerHTML=
     `<button class="pg-btn" ${page===1?'disabled':''} onclick="gp(${page-1})">&lsaquo;</button>`+
     ps.map(p=>p==='…'?`<span class="pg-dot">…</span>`:`<button class="pg-btn ${p===page?'active':''}" onclick="gp(${p})">${p}</button>`).join('')+
-    `<button class="pg-btn" ${page===tot?'disabled':''} onclick="gp(${page+1})">&rsaquo;</button>`;
+    `<button class="pg-btn" ${page===tot?'disabled':''} onclick="gp(${page+1})">&rsaquo;</button>`+
+    `<div class="pg-input-wrap">
+      <input class="pg-input" id="pg-jump" type="number" min="1" max="${tot}" value="${page}" title="${tot}페이지 중 이동할 페이지 입력">
+      <span class="pg-total">/ ${tot}</span>
+    </div>`;
+  document.getElementById('pg-jump').addEventListener('change', function(){
+    const v=parseInt(this.value);
+    if(v>=1&&v<=tot) gp(v);
+    else this.value=page;
+  });
+  document.getElementById('pg-jump').addEventListener('keydown', function(e){
+    if(e.key==='Enter'){
+      const v=parseInt(this.value);
+      if(v>=1&&v<=tot) gp(v);
+      else this.value=page;
+    }
+  });
 }
 function gp(p){ const tot=Math.ceil(fl.length/pp); if(p<1||p>tot)return; page=p;renderQs();renderPg();window.scrollTo({top:0,behavior:'smooth'}); }
 
