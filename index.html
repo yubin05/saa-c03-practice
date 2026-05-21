@@ -193,6 +193,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
 .toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(10px);background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 16px;font-size:13px;color:var(--text-dim);display:flex;align-items:center;gap:8px;z-index:9999;transition:all 0.25s;box-shadow:0 8px 32px rgba(0,0,0,0.5);white-space:nowrap;opacity:0;pointer-events:none;}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 .toast-dot{width:6px;height:6px;border-radius:50%;background:var(--correct);flex-shrink:0;}
+.q-text pre{background:var(--surface3);border:1px solid var(--border);border-radius:8px;padding:12px;margin:8px 0;font-size:12px;font-family:var(--mono);overflow-x:auto;white-space:pre;line-height:1.5;}
 </style>
 </head>
 <body>
@@ -497,10 +498,10 @@ function toast(msg){ document.getElementById('tm').textContent=msg; const el=doc
 function gs(n){ if(!qs[n])qs[n]={sel:[],chk:false,cor:false}; return qs[n]; }
 function eh(s){
   if(!s) return '';
-  const esc=s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-  return esc.replace(/\n(\{[\s\S]*?\})\n/g,(m,code)=>
-    `<pre style="background:var(--surface3);border:1px solid var(--border);border-radius:8px;padding:12px;margin:8px 0;font-size:12px;font-family:var(--mono);overflow-x:auto;white-space:pre;">${code}</pre>`
-  ).replace(/\n/g,'<br>');
+  // <pre>...</pre> 블록은 보존, 나머지만 이스케이프
+  const parts = s.split(/(<pre>[\s\S]*?<\/pre>)/);
+  return parts.map((p,i)=> i%2===1 ? p : p.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>')
+  ).join('');
 }
 
 function goHome(){
