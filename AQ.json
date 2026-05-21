@@ -1148,7 +1148,7 @@
   },
   {
     "num": "Q96",
-    "text": "Amazon  EC2  생성했습니다.  관리자는  여러  사용자가  포함된  IAM  그룹과  연결된  다음  정책을   이 정책의 효과는 무엇입니까?",
+    "text": "Amazon  EC2  생성했습니다.  관리자는  여러  사용자가  포함된  IAM  그룹과  연결된  다음 정책을 생성했습니다:\n{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Effect\": \"Allow\",\n      \"Action\": \"ec2:TerminateInstances\",\n      \"Resource\": \"*\",\n      \"Condition\": {\n        \"IpAddress\": {\n          \"aws:SourceIp\": \"10.100.100.0/24\"\n        }\n      }\n    },\n    {\n      \"Effect\": \"Deny\",\n      \"Action\": \"ec2:*\",\n      \"Resource\": \"*\",\n      \"Condition\": {\n        \"StringNotEquals\": {\n          \"ec2:Region\": \"us-east-1\"\n        }\n      }\n    }\n  ]\n}\n이 정책의 효과는 무엇입니까?",
     "options": {
       "A": "사용자는 us-east-1 을 제외한 모든 AWS 리전에서 EC2 인스턴스를 종료할 수 있습니다.",
       "B": "사용자는 us-east-1 리전에서 IP 주소가 10.100.100.1 인 EC2 인스턴스를 종료할 수 있습니다.",

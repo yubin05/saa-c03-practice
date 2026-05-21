@@ -110,7 +110,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
 .mob-perpage span{font-size:12px;color:var(--text-dimmer);}
 .mob-perpage select{background:var(--surface2);border:1px solid var(--border);border-radius:7px;padding:6px 10px;color:var(--text);font-size:13px;font-family:var(--mono);outline:none;cursor:pointer;}
 
-.quiz-main{padding:10px 12px 200px;}
+.quiz-main{padding:10px 12px 8px;}
 .q-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;margin-bottom:14px;overflow:hidden;}
 .q-card.ac{border-color:rgba(16,185,129,0.4);}
 .q-card.aw{border-color:rgba(244,63,94,0.4);}
@@ -144,7 +144,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
 .chk-btn:disabled{background:var(--surface3);color:var(--text-dimmer);cursor:default;}
 .chk-btn.rm{background:var(--surface3);color:var(--text-dim);border:1px solid var(--border2);}
 
-.pagination{display:flex;align-items:center;justify-content:center;gap:5px;padding:16px 0 80px;flex-wrap:wrap;}
+.pagination{display:flex;align-items:center;justify-content:center;gap:5px;padding:12px 0 100px;flex-wrap:wrap;}
 .pg-btn{background:var(--surface);border:1px solid var(--border);color:var(--text-dim);border-radius:8px;min-width:42px;min-height:42px;padding:0 10px;cursor:pointer;font-size:13px;font-family:var(--mono);display:flex;align-items:center;justify-content:center;}
 .pg-btn.active{background:var(--accent);border-color:var(--accent);color:white;}
 .pg-btn[disabled]{opacity:0.3;cursor:default;}
@@ -187,26 +187,12 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
   .mob-search{display:none;}
   .mob-perpage{display:none;}
   .bnav{display:none!important;}
-  .quiz-main{padding:18px 20px 80px;max-width:780px;}
+  .quiz-main{padding:18px 20px 8px;max-width:780px;}
 }
 
 .toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(10px);background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 16px;font-size:13px;color:var(--text-dim);display:flex;align-items:center;gap:8px;z-index:9999;transition:all 0.25s;box-shadow:0 8px 32px rgba(0,0,0,0.5);white-space:nowrap;opacity:0;pointer-events:none;}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 .toast-dot{width:6px;height:6px;border-radius:50%;background:var(--correct);flex-shrink:0;}
-
-/* 해설 팝업 */
-.popup-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:1000;display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.25s;}
-.popup-overlay.on{opacity:1;pointer-events:all;}
-.popup-sheet{background:var(--surface);border-radius:20px 20px 0 0;width:100%;max-width:780px;max-height:80vh;display:flex;flex-direction:column;transform:translateY(100%);transition:transform 0.3s ease;}
-.popup-overlay.on .popup-sheet{transform:translateY(0);}
-.popup-header{display:flex;align-items:center;justify-content:space-between;padding:16px 18px 12px;border-bottom:1px solid var(--border);flex-shrink:0;}
-.popup-title{font-size:14px;font-weight:600;display:flex;align-items:center;gap:8px;}
-.popup-qnum{font-family:var(--mono);font-size:10px;color:var(--accent);background:var(--accent-dim);border:1px solid rgba(91,140,255,0.2);border-radius:5px;padding:3px 7px;}
-.popup-close{width:30px;height:30px;border-radius:8px;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;color:var(--text-dim);}
-.popup-body{padding:16px 18px 40px;overflow-y:auto;font-size:14px;line-height:1.8;color:var(--text);white-space:pre-wrap;word-break:break-word;}
-.popup-no-explain{color:var(--text-dimmer);font-size:13px;text-align:center;padding:24px 0;}
-.explain-btn{padding:7px 14px;border-radius:8px;border:none;background:var(--surface2);color:var(--text-dim);font-size:12px;font-family:var(--font);cursor:pointer;border:1px solid var(--border);white-space:nowrap;min-height:36px;transition:all 0.15s;}
-.explain-btn:hover{border-color:var(--accent);color:var(--text);}
 </style>
 </head>
 <body>
@@ -293,11 +279,11 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
         </div>
         <div class="ds-sec">
           <div class="ds-lbl">페이지당 문제</div>
-          <select class="ds-sel" id="pp-d"><option value="10" selected>10문제</option><option value="20">20문제</option><option value="50">50문제</option></select>
+          <select class="ds-sel" id="pp-d"><option value="1" selected>1문제</option><option value="10">10문제</option><option value="20">20문제</option><option value="50">50문제</option></select>
         </div>
       </aside>
       <div class="quiz-content">
-        <div class="mob-perpage"><span>페이지당</span><select id="pp-m"><option value="10" selected>10문제</option><option value="20">20문제</option><option value="50">50문제</option></select></div>
+        <div class="mob-perpage"><span>페이지당</span><select id="pp-m"><option value="1" selected>1문제</option><option value="10">10문제</option><option value="20">20문제</option><option value="50">50문제</option></select></div>
         <div class="quiz-main" id="qc"></div>
         <div class="pagination" id="pg"></div>
       </div>
@@ -322,7 +308,7 @@ const SB_URL='https://nxmwacfrvfzbjufqiwdg.supabase.co';
 const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im54bXdhY2ZydmZ6Ymp1ZnFpd2RnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkyNjI4NzgsImV4cCI6MjA5NDgzODg3OH0.a70Gx1VQDoGRDyUxA6HDoMFo8mCebAIQeDFbkuaofCM';
 const LS_KEY='saa-c03-session';
 
-let qs={}, uid='', cat=null, page=1, pp=10, flt='all', st='', fl=[];
+let qs={}, uid='', cat=null, page=1, pp=1, flt='all', st='', fl=[];
 let syncTimer=null;
 
 // ── 비밀번호 해시 (간단한 SHA-256) ──
@@ -509,7 +495,15 @@ async function resetAll(){
 let tt;
 function toast(msg){ document.getElementById('tm').textContent=msg; const el=document.getElementById('toast'); el.classList.add('show'); clearTimeout(tt); tt=setTimeout(()=>el.classList.remove('show'),2500); }
 function gs(n){ if(!qs[n])qs[n]={sel:[],chk:false,cor:false}; return qs[n]; }
-function eh(s){ return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function eh(s){
+  if(!s) return '';
+  const escaped = s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  // JSON 코드블록 처리 (중괄호로 시작하는 블록)
+  return escaped.replace(/\n(\{[\s\S]*?\})
+/g, (m, code) =>
+    `<pre style="background:var(--surface3);border:1px solid var(--border);border-radius:8px;padding:12px;margin:8px 0;font-size:12px;font-family:var(--mono);overflow-x:auto;white-space:pre;">${code}</pre>`
+  ).replace(/\n/g,'<br>');
+}
 
 function goHome(){
   document.getElementById('view-home').style.display='block';
@@ -595,7 +589,7 @@ function renderQs(){
     return `<div class="q-card ${cc}">
       <div class="q-head"><span class="q-badge">${q.num}</span><span class="q-text">${eh(q.text)}${mh}</span></div>
       <div class="opts">${oh}</div>
-      <div class="q-foot">${rh}<div class="foot-r"><span class="ans-lbl">정답</span><span class="ans-box ${s.chk?'vis':''}">${q.answer}</span>${s.chk?`<button class="explain-btn" onclick="openExplain('${q.num}')">💡 해설</button>`:''}<button class="chk-btn${s.chk?' rm':''}" ${!s.chk&&!s.sel.length?'disabled':''} onclick="doChk('${q.num}','${q.answer}')">${s.chk?'다시 풀기':'확인'}</button></div></div>
+      <div class="q-foot">${rh}<div class="foot-r"><span class="ans-lbl">정답</span><span class="ans-box ${s.chk?'vis':''}">${q.answer}</span><button class="chk-btn${s.chk?' rm':''}" ${!s.chk&&!s.sel.length?'disabled':''} onclick="doChk('${q.num}','${q.answer}')">${s.chk?'다시 풀기':'확인'}</button></div></div>
     </div>`;
   }).join('');
   document.querySelectorAll('.opt:not(.dis)').forEach(el=>{
@@ -699,49 +693,6 @@ document.querySelectorAll('.ds-fbtn').forEach(btn=>{
     renderAll();
   });
 });
-
-// Explain.json 로드
-let EX = {};
-(async()=>{
-  try{
-    const r = await fetch('./Explain.json');
-    if(r.ok) EX = await r.json();
-  }catch(e){ console.warn('Explain.json 로드 실패', e); }
-})();
-
-function openExplain(qnum){
-  document.getElementById('popup-qnum').textContent = qnum;
-  const body = document.getElementById('popup-body');
-  const text = EX[qnum];
-  if(text){
-    body.innerHTML = '';
-    body.textContent = text;
-  } else {
-    body.innerHTML = '<div class="popup-no-explain">이 문제는 해설이 없습니다 😢</div>';
-  }
-  document.getElementById('explain-popup').classList.add('on');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeExplain(e){
-  if(e && e.target !== document.getElementById('explain-popup')) return;
-  document.getElementById('explain-popup').classList.remove('on');
-  document.body.style.overflow = '';
-}
 </script>
-
-<!-- 해설 팝업 -->
-<div class="popup-overlay" id="explain-popup" onclick="closeExplain(event)">
-  <div class="popup-sheet">
-    <div class="popup-header">
-      <div class="popup-title">
-        <span class="popup-qnum" id="popup-qnum"></span>
-        💡 해설
-      </div>
-      <div class="popup-close" onclick="closeExplain()">✕</div>
-    </div>
-    <div class="popup-body" id="popup-body"></div>
-  </div>
-</div>
 </body>
 </html>
