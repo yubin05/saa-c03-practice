@@ -497,10 +497,8 @@ function toast(msg){ document.getElementById('tm').textContent=msg; const el=doc
 function gs(n){ if(!qs[n])qs[n]={sel:[],chk:false,cor:false}; return qs[n]; }
 function eh(s){
   if(!s) return '';
-  const escaped = s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-  // JSON 코드블록 처리 (중괄호로 시작하는 블록)
-  return escaped.replace(/\n(\{[\s\S]*?\})
-/g, (m, code) =>
+  const esc=s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  return esc.replace(/\n(\{[\s\S]*?\})\n/g,(m,code)=>
     `<pre style="background:var(--surface3);border:1px solid var(--border);border-radius:8px;padding:12px;margin:8px 0;font-size:12px;font-family:var(--mono);overflow-x:auto;white-space:pre;">${code}</pre>`
   ).replace(/\n/g,'<br>');
 }
