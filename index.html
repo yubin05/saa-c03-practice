@@ -618,10 +618,19 @@ function renderQs(){
 
 function doChk(n,ans){
   const s=gs(n);
-  if(s.chk){s.sel=[];s.chk=false;s.cor=false;}
-  else{if(!s.sel.length)return;s.chk=true;s.cor=[...s.sel].sort().join('')===[...ans].sort().join('');}
-  debounceSave();
-  applyFlt();renderQs();updCnts();updHdr();
+  if(s.chk){
+    // 다시 풀기: 필터 즉시 재적용
+    s.sel=[];s.chk=false;s.cor=false;
+    debounceSave();
+    applyFlt();renderQs();updCnts();updHdr();
+  } else {
+    if(!s.sel.length)return;
+    s.chk=true;s.cor=[...s.sel].sort().join('')===[...ans].sort().join('');
+    debounceSave();
+    // 정답 확인 시: 필터 재적용 없이 현재 문제만 업데이트 (해설 볼 수 있도록)
+    // 페이지 이동 / 필터 변경 시 자연스럽게 반영됨
+    renderQs();updCnts();updHdr();
+  }
   // 홈 진행률도 업데이트
   updateHomeStats();
 }
