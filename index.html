@@ -619,10 +619,10 @@ function renderQs(){
 function doChk(n,ans){
   const s=gs(n);
   if(s.chk){
-    // 다시 풀기: 필터 즉시 재적용
+    // 다시 풀기: 필터 재적용 없이 현재 위치 유지 (문제 풀 수 있도록)
     s.sel=[];s.chk=false;s.cor=false;
     debounceSave();
-    applyFlt();renderQs();updCnts();updHdr();
+    renderQs();updCnts();updHdr();
   } else {
     if(!s.sel.length)return;
     s.chk=true;s.cor=[...s.sel].sort().join('')===[...ans].sort().join('');
